@@ -1,0 +1,21 @@
+x	y	key	label	showSelected1
+0	1	1	tendence=constante, bloc=1	constante.1
+0	1	1	tendence=constante, bloc=2	constante.2
+0	1	1	tendence=constante, bloc=3	constante.3
+0	1	1	tendence=constante, bloc=4	constante.4
+0	1	1	tendence=constante, bloc=5	constante.5
+0	1	1	tendence=linéaire, bloc=1	linéaire.1
+0	1	1	tendence=linéaire, bloc=2	linéaire.2
+0	1	1	tendence=linéaire, bloc=3	linéaire.3
+0	1	1	tendence=linéaire, bloc=4	linéaire.4
+0	1	1	tendence=linéaire, bloc=5	linéaire.5
+0	1	1	tendence=quadratique, bloc=1	quadratique.1
+0	1	1	tendence=quadratique, bloc=2	quadratique.2
+0	1	1	tendence=quadratique, bloc=3	quadratique.3
+0	1	1	tendence=quadratique, bloc=4	quadratique.4
+0	1	1	tendence=quadratique, bloc=5	quadratique.5
+0	1	1	tendence=cubique, bloc=1	cubique.1
+0	1	1	tendence=cubique, bloc=2	cubique.2
+0	1	1	tendence=cubique, bloc=3	cubique.3
+0	1	1	tendence=cubique, bloc=4	cubique.4
+0	1	1	tendence=cubique, bloc=5	cubique.5
