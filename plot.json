@@ -625,7 +625,7 @@
 "classed": "geom15_text_fonctions",
 "aes": {
 "x": "0",
-"y": "1",
+"y": "1.05",
 "key": "1",
 "label": "sprintf(\"tendence=%s, bloc=%d\", tendence, test.bloc)",
 "showSelected1": "tendence.bloc"
@@ -2361,7 +2361,7 @@
 "0.75",
 "1.00" 
 ],
-"yrange": [    -0.05,     1.05 ],
+"yrange": [  -0.0525,   1.1025 ],
 "yline": true,
 "yticks": true 
 },
