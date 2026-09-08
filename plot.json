@@ -2408,5 +2408,5 @@
 } 
 },
 "source": "https://github.com/tdhock/2026-08-apprentissage/blob/master/figure-sur-sous-apprentissage-test-neighbors.R",
-"title": "Test error p-values for nearest neighbors, simulated regression" 
+"title": "Valeurs-p pour l’erreur sur test, plus proches voisins, régression" 
 }
