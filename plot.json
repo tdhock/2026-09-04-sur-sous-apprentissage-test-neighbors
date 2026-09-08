@@ -1,15 +1,95 @@
 {
  "geoms": {
- "geom1_segment_test": {
- "geom": "segment",
-"classed": "geom1_segment_test",
+ "geom1_point_test": {
+ "geom": "point",
+"classed": "geom1_point_test",
 "aes": {
- "x": "RMSE",
-"y": "Paramètre",
-"key": "Paramètre",
+"x": "RMSE_mean",
+"y": "Voisins",
+"key": "Voisins",
+"showSelected1": "erreur",
+"showSelected2": "voisins"
+},
+"params": {
+ "na.rm": false,
+"na.rm": false,
+"colour": "#FF0000",
+"showSelected": [ "erreur", "voisins" ],
+"help": "Point rouge pour l’erreur moyenne du nombre de voisins sélectionné",
+"help_showSelected": [ "erreur", "voisins" ] 
+},
+"types": {
+"y": "integer",
+"x": "numeric",
+"key": "factor",
+"showSelected1": "character",
+"showSelected2": "integer",
+"PANEL": "factor",
+"group": "character"
+},
+"chunk_order": [],
+"nest_order": [
+ "showSelected1",
+"showSelected2",
+"PANEL" 
+],
+"subset_order": [
+ "showSelected1",
+"showSelected2",
+"PANEL" 
+],
+"chunks": 1,
+"total": 1 
+},
+"geom2_point_test": {
+ "geom": "point",
+"classed": "geom2_point_test",
+"aes": {
+"x": "RMSE_mean",
+"y": "Voisins",
+"size": "erreur",
+"colour": "erreur",
+"showSelected1": "erreur"
+},
+"params": {
+ "na.rm": false,
+"na.rm": false,
+"help": "Point rouge pour l’erreur moyenne du meilleur sur validation et max (sans caractères)",
+"showSelected": "erreur",
+"help_showSelected": "erreur" 
+},
+"types": {
+"colour": "rgb",
+"size": "numeric",
+"y": "integer",
+"x": "numeric",
+"showSelected1": "character",
+"PANEL": "factor",
+"group": "character",
+"fill": "rgb"
+},
+"chunk_order": [],
+"nest_order": [
+ "showSelected1",
+"PANEL" 
+],
+"subset_order": [
+ "showSelected1",
+"PANEL" 
+],
+"chunks": 1,
+"total": 1 
+},
+"geom3_segment_test": {
+ "geom": "segment",
+"classed": "geom3_segment_test",
+"aes": {
+"x": "RMSE",
+"y": "Voisins",
+"key": "Voisins",
 "xend": "compare_RMSE",
-"yend": "Paramètre",
-"showSelected1": "voisins" 
+"yend": "Voisins",
+"showSelected1": "voisins"
 },
 "params": {
  "lineend": "butt",
@@ -17,18 +97,19 @@
 "na.rm": false,
 "size":        1,
 "colour": "#FF0000",
+"help": "Segment rouge entre moyennes",
 "showSelected": "voisins",
 "help_showSelected": "voisins" 
 },
 "types": {
- "y": "integer",
+"y": "integer",
 "yend": "integer",
 "x": "numeric",
 "xend": "numeric",
 "key": "factor",
 "showSelected1": "integer",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
@@ -40,183 +121,102 @@
 "PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom1_segment_test_chunk1.tsv": {
- "bytes":    20244,
-"rows": 320 
-} 
-} 
-},
-"geom2_segment_test": {
- "geom": "segment",
-"classed": "geom2_segment_test",
-"aes": {
- "x": "RMSE_mean + RMSE_sd",
-"y": "Paramètre",
-"key": "Paramètre",
-"xend": "RMSE_mean - RMSE_sd",
-"yend": "Paramètre",
-"showSelected1": "voisins" 
-},
-"params": {
- "lineend": "butt",
-"na.rm": false,
-"na.rm": false,
-"colour": "#FF0000",
-"showSelected": "voisins",
-"help_showSelected": "voisins" 
-},
-"types": {
- "y": "integer",
-"yend": "integer",
-"x": "numeric",
-"xend": "numeric",
-"key": "factor",
-"showSelected1": "integer",
-"PANEL": "factor",
-"group": "character" 
-},
-"chunk_order": [],
-"nest_order": [
- "showSelected1",
-"PANEL" 
-],
-"subset_order": [
- "showSelected1",
-"PANEL" 
-],
-"chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom2_segment_test_chunk1.tsv": {
- "bytes":     8993,
-"rows": 160 
-} 
-} 
-},
-"geom3_point_test": {
- "geom": "point",
-"classed": "geom3_point_test",
-"aes": {
- "x": "RMSE_mean",
-"y": "Paramètre",
-"key": "Paramètre",
-"showSelected1": "voisins" 
-},
-"params": {
- "na.rm": false,
-"na.rm": false,
-"colour": "#FF0000",
-"showSelected": "voisins",
-"help_showSelected": "voisins" 
-},
-"types": {
- "y": "integer",
-"x": "numeric",
-"key": "factor",
-"showSelected1": "integer",
-"PANEL": "factor",
-"group": "character" 
-},
-"chunk_order": [],
-"nest_order": [
- "showSelected1",
-"PANEL" 
-],
-"subset_order": [
- "showSelected1",
-"PANEL" 
-],
-"chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom3_point_test_chunk1.tsv": {
- "bytes":     5771,
-"rows": 160 
-} 
-} 
+"total": 1 
 },
 "geom4_segment_test": {
  "geom": "segment",
 "classed": "geom4_segment_test",
 "aes": {
- "x": "RMSE_mean + RMSE_sd",
-"y": "Paramètre",
+"x": "RMSE_mean + RMSE_sd",
+"y": "Voisins",
+"key": "Voisins",
 "xend": "RMSE_mean - RMSE_sd",
-"yend": "Paramètre" 
+"yend": "Voisins",
+"showSelected1": "voisins",
+"showSelected2": "erreur"
 },
 "params": {
  "lineend": "butt",
 "na.rm": false,
 "na.rm": false,
-"colour": "#FF0000" 
+"colour": "#FF0000",
+"showSelected": [ "voisins", "erreur" ],
+"help": "Segment rouge pour l’écart type",
+"help_showSelected": [ "voisins", "erreur" ] 
 },
 "types": {
- "y": "integer",
+"y": "integer",
 "yend": "integer",
 "x": "numeric",
 "xend": "numeric",
+"key": "factor",
+"showSelected1": "integer",
+"showSelected2": "character",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
- "PANEL" 
+ "showSelected1",
+"showSelected2",
+"PANEL" 
 ],
 "subset_order": [
- "PANEL" 
+ "showSelected1",
+"showSelected2",
+"PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom4_segment_test_chunk1.tsv": {
- "bytes":      361,
-"rows": 8 
-} 
-} 
+"total": 1 
 },
-"geom5_point_test": {
- "geom": "point",
-"classed": "geom5_point_test",
+"geom5_segment_test": {
+ "geom": "segment",
+"classed": "geom5_segment_test",
 "aes": {
- "x": "RMSE_mean",
-"y": "Paramètre" 
+"x": "RMSE_mean + RMSE_sd",
+"y": "Voisins",
+"xend": "RMSE_mean - RMSE_sd",
+"yend": "Voisins",
+"showSelected1": "erreur"
 },
 "params": {
- "na.rm": false,
+ "lineend": "butt",
 "na.rm": false,
-"colour": "#FF0000" 
+"na.rm": false,
+"colour": "#FF0000",
+"showSelected": "erreur",
+"help": "Segment rouge pour l’écart type",
+"help_showSelected": "erreur" 
 },
 "types": {
- "y": "integer",
+"y": "integer",
+"yend": "integer",
 "x": "numeric",
+"xend": "numeric",
+"showSelected1": "character",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
- "PANEL" 
+ "showSelected1",
+"PANEL" 
 ],
 "subset_order": [
- "PANEL" 
+ "showSelected1",
+"PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom5_point_test_chunk1.tsv": {
- "bytes":      188,
-"rows": 8 
-} 
-} 
+"total": 1 
 },
 "geom6_text_test": {
  "geom": "text",
 "classed": "geom6_text_test",
 "aes": {
- "x": "RMSE_mean",
-"y": "Paramètre",
-"label": "sprintf(\"%.3f±%.3f\", RMSE_mean, RMSE_sd)" 
+"x": "RMSE_mean",
+"y": "Voisins",
+"label": "sprintf(\"%.3f±%.3f\", RMSE_mean, RMSE_sd)",
+"showSelected1": "erreur"
 },
 "params": {
  "parse": false,
@@ -224,40 +224,41 @@
 "na.rm": false,
 "na.rm": false,
 "colour": "#000000",
-"size":       12 
+"size":       12,
+"showSelected": "erreur",
+"help": "Texte pour moyenne ± écart type",
+"help_showSelected": "erreur" 
 },
 "types": {
- "y": "integer",
+"y": "integer",
 "x": "numeric",
 "label": "character",
+"showSelected1": "character",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
- "PANEL" 
+ "showSelected1",
+"PANEL" 
 ],
 "subset_order": [
- "PANEL" 
+ "showSelected1",
+"PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom6_text_test_chunk1.tsv": {
- "bytes":      298,
-"rows": 8 
-} 
-} 
+"total": 1 
 },
 "geom7_text_test": {
  "geom": "text",
 "classed": "geom7_text_test",
 "aes": {
- "x": "RMSE_mean",
-"y": "Paramètre",
-"key": "Paramètre",
+"x": "RMSE_mean",
+"y": "Voisins",
+"key": "Voisins",
 "label": "sprintf(\"%.3f±%.3f\", RMSE_mean, RMSE_sd)",
-"showSelected1": "voisins" 
+"showSelected1": "erreur",
+"showSelected2": "voisins"
 },
 "params": {
  "parse": false,
@@ -266,45 +267,43 @@
 "na.rm": false,
 "colour": "#000000",
 "size":       12,
-"showSelected": "voisins",
-"help_showSelected": "voisins" 
+"showSelected": [ "erreur", "voisins" ],
+"help": "Texte pour moyenne ± écart type",
+"help_showSelected": [ "erreur", "voisins" ] 
 },
 "types": {
- "y": "integer",
+"y": "integer",
 "x": "numeric",
 "key": "factor",
 "label": "character",
-"showSelected1": "integer",
+"showSelected1": "character",
+"showSelected2": "integer",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
  "showSelected1",
+"showSelected2",
 "PANEL" 
 ],
 "subset_order": [
  "showSelected1",
+"showSelected2",
 "PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom7_text_test_chunk1.tsv": {
- "bytes":     7857,
-"rows": 160 
-} 
-} 
+"total": 1 
 },
 "geom8_text_test": {
  "geom": "text",
 "classed": "geom8_text_test",
 "aes": {
- "x": "RMSE_mid",
-"y": "Paramètre",
-"key": "Paramètre",
+"x": "RMSE_mid",
+"y": "Voisins",
+"key": "Voisins",
 "label": "label",
-"showSelected1": "voisins" 
+"showSelected1": "voisins"
 },
 "params": {
  "parse": false,
@@ -314,16 +313,17 @@
 "colour": "#000000",
 "size":       12,
 "showSelected": "voisins",
+"help": "Texte pour probabilité critique (valeur-p), différence entre sélection et meilleur/max nombre de voisins",
 "help_showSelected": "voisins" 
 },
 "types": {
- "y": "integer",
+"y": "integer",
 "x": "numeric",
 "key": "factor",
 "label": "character",
 "showSelected1": "integer",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
@@ -335,119 +335,117 @@
 "PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom8_text_test_chunk1.tsv": {
- "bytes":    16291,
-"rows": 320 
-} 
-} 
+"total": 1 
 },
 "geom9_point_test": {
  "geom": "point",
 "classed": "geom9_point_test",
 "aes": {
- "x": "RMSE",
-"y": "Paramètre",
+"x": "RMSE",
+"y": "Voisins",
+"size": "erreur",
+"colour": "erreur",
 "key": "test.bloc",
 "clickSelects": "tendence.bloc",
-"showSelected1": "voisins" 
+"showSelected1": "voisins",
+"showSelected2": "erreur"
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
-"colour": "#0000FF",
-"size":        5,
 "alpha":      0.5,
 "fill": "#FF0000",
-"showSelected": "voisins",
+"showSelected": [ "voisins", "erreur" ],
 "clickSelects": "tendence.bloc",
 "fill_off": "transparent",
 "alpha_off":      0.5,
-"help_showSelected": "voisins",
+"help": "Point entouré en bleu pour l’erreur de chaque bloc de validation croisée",
+"help_showSelected": [ "voisins", "erreur" ],
 "help_clickSelects": "tendence.bloc" 
 },
 "types": {
- "y": "integer",
+"colour": "rgb",
+"size": "numeric",
+"y": "integer",
 "x": "numeric",
 "key": "integer",
 "clickSelects": "character",
 "showSelected1": "integer",
+"showSelected2": "character",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
  "showSelected1",
+"showSelected2",
 "PANEL" 
 ],
 "subset_order": [
  "showSelected1",
+"showSelected2",
 "PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom9_point_test_chunk1.tsv": {
- "bytes":    31165,
-"rows": 800 
-} 
-} 
+"total": 1 
 },
 "geom10_point_test": {
  "geom": "point",
 "classed": "geom10_point_test",
 "aes": {
- "x": "RMSE",
-"y": "Paramètre",
-"key": "paste(Paramètre, test.bloc)",
-"clickSelects": "tendence.bloc" 
+"x": "RMSE",
+"y": "Voisins",
+"size": "erreur",
+"colour": "erreur",
+"key": "paste(Voisins, test.bloc)",
+"clickSelects": "tendence.bloc",
+"showSelected1": "erreur"
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
-"colour": "#0000FF",
-"size":        5,
 "alpha":      0.5,
 "fill": "#FF0000",
 "clickSelects": "tendence.bloc",
 "fill_off": "transparent",
 "alpha_off":      0.5,
-"help_clickSelects": "tendence.bloc" 
+"help": "Point entouré en bleu pour l’erreur de chaque bloc de validation croisée",
+"showSelected": "erreur",
+"help_clickSelects": "tendence.bloc",
+"help_showSelected": "erreur" 
 },
 "types": {
- "y": "integer",
+"colour": "rgb",
+"size": "numeric",
+"y": "integer",
 "x": "numeric",
 "key": "character",
 "clickSelects": "character",
+"showSelected1": "character",
 "PANEL": "factor",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
- "PANEL" 
+ "showSelected1",
+"PANEL" 
 ],
 "subset_order": [
- "PANEL" 
+ "showSelected1",
+"PANEL" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom10_point_test_chunk1.tsv": {
- "bytes":     2298,
-"rows": 40 
-} 
-} 
+"total": 1 
 },
 "geom11_text_error": {
  "geom": "text",
 "classed": "geom11_text_error",
 "aes": {
- "x": "20",
+"x": "20",
 "y": "0.4",
 "key": "1",
 "label": "sprintf(\"tendence=%s, bloc=%d\", tendence, test.bloc)",
-"showSelected1": "tendence.bloc" 
+"showSelected1": "tendence.bloc"
 },
 "params": {
  "parse": false,
@@ -455,16 +453,17 @@
 "na.rm": false,
 "na.rm": false,
 "showSelected": "tendence.bloc",
+"help": "Texte pour la sélection de tendence et bloc",
 "help_showSelected": "tendence.bloc" 
 },
 "types": {
- "y": "numeric",
+"y": "numeric",
 "x": "numeric",
 "key": "numeric",
 "label": "character",
 "showSelected1": "character",
 "PANEL": "integer",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
@@ -474,42 +473,37 @@
  "showSelected1" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom11_text_error_chunk1.tsv": {
- "bytes":      988,
-"rows": 20 
-} 
-} 
+"total": 1 
 },
 "geom12_line_error": {
  "geom": "line",
 "classed": "geom12_line_error",
 "aes": {
- "x": "voisins",
+"x": "voisins",
 "y": "RMSE.thresh",
 "colour": "ensemble",
 "group": "ensemble",
 "key": "ensemble",
 "showSelected1": "tendence.bloc",
-"showSelected2": "ensemble" 
+"showSelected2": "ensemble"
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
 "size":        5,
 "showSelected": [ "tendence.bloc", "ensemble" ],
+"help": "Courbes pour l’erreur sur sous-entraînement et validation",
 "help_showSelected": [ "tendence.bloc", "ensemble" ] 
 },
 "types": {
- "colour": "rgb",
+"colour": "rgb",
 "y": "numeric",
 "x": "numeric",
 "group": "character",
 "key": "character",
 "showSelected1": "character",
 "showSelected2": "character",
-"PANEL": "integer" 
+"PANEL": "integer"
 },
 "chunk_order": [
  "tendence.bloc" 
@@ -552,104 +546,18 @@
 "quadratique.4": 19,
 "quadratique.5": 20 
 },
-"total": 20,
-"chunk_info": {
- "geom12_line_error_chunk_common.tsv": {
- "bytes":     3455,
-"rows": 80 
-},
-"geom12_line_error_chunk1.tsv": {
- "bytes":     1583,
-"rows": 80 
-},
-"geom12_line_error_chunk2.tsv": {
- "bytes":     1584,
-"rows": 80 
-},
-"geom12_line_error_chunk3.tsv": {
- "bytes":     1582,
-"rows": 80 
-},
-"geom12_line_error_chunk4.tsv": {
- "bytes":     1584,
-"rows": 80 
-},
-"geom12_line_error_chunk5.tsv": {
- "bytes":     1585,
-"rows": 80 
-},
-"geom12_line_error_chunk6.tsv": {
- "bytes":     1608,
-"rows": 80 
-},
-"geom12_line_error_chunk7.tsv": {
- "bytes":     1609,
-"rows": 80 
-},
-"geom12_line_error_chunk8.tsv": {
- "bytes":     1604,
-"rows": 80 
-},
-"geom12_line_error_chunk9.tsv": {
- "bytes":     1599,
-"rows": 80 
-},
-"geom12_line_error_chunk10.tsv": {
- "bytes":     1596,
-"rows": 80 
-},
-"geom12_line_error_chunk11.tsv": {
- "bytes":     1625,
-"rows": 80 
-},
-"geom12_line_error_chunk12.tsv": {
- "bytes":     1625,
-"rows": 80 
-},
-"geom12_line_error_chunk13.tsv": {
- "bytes":     1625,
-"rows": 80 
-},
-"geom12_line_error_chunk14.tsv": {
- "bytes":     1613,
-"rows": 80 
-},
-"geom12_line_error_chunk15.tsv": {
- "bytes":     1609,
-"rows": 80 
-},
-"geom12_line_error_chunk16.tsv": {
- "bytes":     1589,
-"rows": 80 
-},
-"geom12_line_error_chunk17.tsv": {
- "bytes":     1593,
-"rows": 80 
-},
-"geom12_line_error_chunk18.tsv": {
- "bytes":     1594,
-"rows": 80 
-},
-"geom12_line_error_chunk19.tsv": {
- "bytes":     1592,
-"rows": 80 
-},
-"geom12_line_error_chunk20.tsv": {
- "bytes":     1592,
-"rows": 80 
-} 
-} 
+"total": 20 
 },
 "geom13_point_error": {
  "geom": "point",
 "classed": "geom13_point_error",
 "aes": {
- "x": "voisins",
+"x": "voisins",
 "y": "RMSE.thresh",
 "colour": "ensemble",
 "key": "ensemble",
 "showSelected1": "tendence.bloc",
-"showSelected2": "ensemble" 
+"showSelected2": "ensemble"
 },
 "params": {
  "na.rm": false,
@@ -657,17 +565,18 @@
 "fill": "#FFFFFF",
 "size":        4,
 "showSelected": [ "tendence.bloc", "ensemble" ],
+"help": "Point pour la meilleure erreur sur validation",
 "help_showSelected": [ "tendence.bloc", "ensemble" ] 
 },
 "types": {
- "colour": "rgb",
+"colour": "rgb",
 "y": "numeric",
 "x": "numeric",
 "key": "character",
 "showSelected1": "character",
 "showSelected2": "character",
 "PANEL": "integer",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
@@ -679,58 +588,47 @@
 "showSelected2" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom13_point_error_chunk1.tsv": {
- "bytes":     1298,
-"rows": 20 
-} 
-} 
+"total": 1 
 },
 "geom14_tallrect_error": {
  "geom": "tallrect",
 "classed": "geom14_tallrect_error",
 "aes": {
- "xmin": "voisins - 0.5",
+"xmin": "voisins - 0.5",
 "xmax": "voisins + 0.5",
-"clickSelects": "voisins" 
+"clickSelects": "voisins"
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
 "alpha":      0.5,
 "colour": "transparent",
+"help": "Rectange pour la sélection du nombre de voisins",
 "clickSelects": "voisins",
 "help_clickSelects": "voisins" 
 },
 "types": {
- "xmin": "numeric",
+"xmin": "numeric",
 "xmax": "numeric",
 "clickSelects": "integer",
 "PANEL": "integer",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [],
 "subset_order": [],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom14_tallrect_error_chunk1.tsv": {
- "bytes":      515,
-"rows": 40 
-} 
-} 
+"total": 1 
 },
 "geom15_text_fonctions": {
  "geom": "text",
 "classed": "geom15_text_fonctions",
 "aes": {
- "x": "0",
+"x": "0",
 "y": "1",
 "key": "1",
 "label": "sprintf(\"tendence=%s, bloc=%d\", tendence, test.bloc)",
-"showSelected1": "tendence.bloc" 
+"showSelected1": "tendence.bloc"
 },
 "params": {
  "parse": false,
@@ -738,16 +636,17 @@
 "na.rm": false,
 "na.rm": false,
 "showSelected": "tendence.bloc",
+"help": "Texte pour la sélection de tendence et bloc",
 "help_showSelected": "tendence.bloc" 
 },
 "types": {
- "x": "numeric",
+"x": "numeric",
 "y": "numeric",
 "key": "numeric",
 "label": "character",
 "showSelected1": "character",
 "PANEL": "integer",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [],
 "nest_order": [
@@ -757,41 +656,36 @@
  "showSelected1" 
 ],
 "chunks": 1,
-"total": 1,
-"chunk_info": {
- "geom15_text_fonctions_chunk1.tsv": {
- "bytes":      928,
-"rows": 20 
-} 
-} 
+"total": 1 
 },
 "geom16_point_fonctions": {
  "geom": "point",
 "classed": "geom16_point_fonctions",
 "aes": {
- "x": "x",
+"x": "x",
 "y": "ynorm",
 "fill": "ensemble",
 "key": "row.i",
 "showSelected1": "ensemble",
-"showSelected2": "tendence.bloc" 
+"showSelected2": "tendence.bloc"
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
 "size":        4,
 "showSelected": [ "ensemble", "tendence.bloc" ],
+"help": "Points pour les données",
 "help_showSelected": [ "ensemble", "tendence.bloc" ] 
 },
 "types": {
- "fill": "rgb",
+"fill": "rgb",
 "x": "numeric",
 "y": "numeric",
 "key": "integer",
 "showSelected1": "character",
 "showSelected2": "character",
 "PANEL": "integer",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [
  "tendence.bloc" 
@@ -831,118 +725,33 @@
 "quadratique.4": 19,
 "quadratique.5": 20 
 },
-"total": 20,
-"chunk_info": {
- "geom16_point_fonctions_chunk_common.tsv": {
- "bytes":    89892,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk1.tsv": {
- "bytes":   162387,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk2.tsv": {
- "bytes":   162387,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk3.tsv": {
- "bytes":   162387,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk4.tsv": {
- "bytes":   162387,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk5.tsv": {
- "bytes":   162387,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk6.tsv": {
- "bytes":   162547,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk7.tsv": {
- "bytes":   162547,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk8.tsv": {
- "bytes":   162547,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk9.tsv": {
- "bytes":   162547,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk10.tsv": {
- "bytes":   162547,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk11.tsv": {
- "bytes":   162307,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk12.tsv": {
- "bytes":   162307,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk13.tsv": {
- "bytes":   162307,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk14.tsv": {
- "bytes":   162307,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk15.tsv": {
- "bytes":   162307,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk16.tsv": {
- "bytes":   162867,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk17.tsv": {
- "bytes":   162867,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk18.tsv": {
- "bytes":   162867,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk19.tsv": {
- "bytes":   162867,
-"rows": 4000 
-},
-"geom16_point_fonctions_chunk20.tsv": {
- "bytes":   162867,
-"rows": 4000 
-} 
-} 
+"total": 20 
 },
 "geom17_line_fonctions": {
  "geom": "line",
 "classed": "geom17_line_fonctions",
 "aes": {
- "x": "x",
+"x": "x",
 "y": "pred.thresh",
 "key": "1",
 "showSelected1": "tendence.bloc",
-"showSelected2": "voisins" 
+"showSelected2": "voisins"
 },
 "params": {
  "na.rm": false,
 "na.rm": false,
+"help": "Courbe noir pour la fonction de prédiction pour la sélection du nombre de voisins",
 "showSelected": [ "tendence.bloc", "voisins" ],
 "help_showSelected": [ "tendence.bloc", "voisins" ] 
 },
 "types": {
- "x": "numeric",
+"x": "numeric",
 "y": "numeric",
 "key": "numeric",
 "showSelected1": "character",
 "showSelected2": "integer",
 "PANEL": "integer",
-"group": "character" 
+"group": "character"
 },
 "chunk_order": [
  "tendence.bloc",
@@ -1799,3213 +1608,7 @@
 "40": 800 
 } 
 },
-"total": 800,
-"chunk_info": {
- "geom17_line_fonctions_chunk_common.tsv": {
- "bytes":     4237,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk1.tsv": {
- "bytes":     7976,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk2.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk3.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk4.tsv": {
- "bytes":     7986,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk5.tsv": {
- "bytes":     7979,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk6.tsv": {
- "bytes":     7969,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk7.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk8.tsv": {
- "bytes":     7996,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk9.tsv": {
- "bytes":     8021,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk10.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk11.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk12.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk13.tsv": {
- "bytes":     7956,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk14.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk15.tsv": {
- "bytes":     8003,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk16.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk17.tsv": {
- "bytes":     7935,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk18.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk19.tsv": {
- "bytes":     7980,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk20.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk21.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk22.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk23.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk24.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk25.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk26.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk27.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk28.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk29.tsv": {
- "bytes":     7853,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk30.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk31.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk32.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk33.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk34.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk35.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk36.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk37.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk38.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk39.tsv": {
- "bytes":     7819,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk40.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk41.tsv": {
- "bytes":     7507,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk42.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk43.tsv": {
- "bytes":     7952,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk44.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk45.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk46.tsv": {
- "bytes":     7996,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk47.tsv": {
- "bytes":     7953,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk48.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk49.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk50.tsv": {
- "bytes":     7899,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk51.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk52.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk53.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk54.tsv": {
- "bytes":     7980,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk55.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk56.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk57.tsv": {
- "bytes":     7980,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk58.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk59.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk60.tsv": {
- "bytes":     7907,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk61.tsv": {
- "bytes":     7891,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk62.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk63.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk64.tsv": {
- "bytes":     7874,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk65.tsv": {
- "bytes":     7879,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk66.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk67.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk68.tsv": {
- "bytes":     7986,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk69.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk70.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk71.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk72.tsv": {
- "bytes":     7664,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk73.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk74.tsv": {
- "bytes":     7851,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk75.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk76.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk77.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk78.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk79.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk80.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk81.tsv": {
- "bytes":     7507,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk82.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk83.tsv": {
- "bytes":     7952,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk84.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk85.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk86.tsv": {
- "bytes":     7996,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk87.tsv": {
- "bytes":     7953,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk88.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk89.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk90.tsv": {
- "bytes":     7899,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk91.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk92.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk93.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk94.tsv": {
- "bytes":     7980,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk95.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk96.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk97.tsv": {
- "bytes":     7980,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk98.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk99.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk100.tsv": {
- "bytes":     7907,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk101.tsv": {
- "bytes":     7891,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk102.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk103.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk104.tsv": {
- "bytes":     7874,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk105.tsv": {
- "bytes":     7879,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk106.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk107.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk108.tsv": {
- "bytes":     7986,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk109.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk110.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk111.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk112.tsv": {
- "bytes":     7664,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk113.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk114.tsv": {
- "bytes":     7851,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk115.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk116.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk117.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk118.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk119.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk120.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk121.tsv": {
- "bytes":     7749,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk122.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk123.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk124.tsv": {
- "bytes":     7969,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk125.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk126.tsv": {
- "bytes":     7819,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk127.tsv": {
- "bytes":     7905,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk128.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk129.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk130.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk131.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk132.tsv": {
- "bytes":     7983,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk133.tsv": {
- "bytes":     8003,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk134.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk135.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk136.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk137.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk138.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk139.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk140.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk141.tsv": {
- "bytes":     7840,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk142.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk143.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk144.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk145.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk146.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk147.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk148.tsv": {
- "bytes":     7984,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk149.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk150.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk151.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk152.tsv": {
- "bytes":     7853,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk153.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk154.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk155.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk156.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk157.tsv": {
- "bytes":     7825,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk158.tsv": {
- "bytes":     7847,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk159.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk160.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk161.tsv": {
- "bytes":     7749,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk162.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk163.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk164.tsv": {
- "bytes":     7969,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk165.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk166.tsv": {
- "bytes":     7819,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk167.tsv": {
- "bytes":     7905,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk168.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk169.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk170.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk171.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk172.tsv": {
- "bytes":     7983,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk173.tsv": {
- "bytes":     8003,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk174.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk175.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk176.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk177.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk178.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk179.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk180.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk181.tsv": {
- "bytes":     7840,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk182.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk183.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk184.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk185.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk186.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk187.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk188.tsv": {
- "bytes":     7984,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk189.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk190.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk191.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk192.tsv": {
- "bytes":     7853,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk193.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk194.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk195.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk196.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk197.tsv": {
- "bytes":     7825,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk198.tsv": {
- "bytes":     7847,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk199.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk200.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk201.tsv": {
- "bytes":     7866,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk202.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk203.tsv": {
- "bytes":     7967,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk204.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk205.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk206.tsv": {
- "bytes":     7976,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk207.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk208.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk209.tsv": {
- "bytes":     7954,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk210.tsv": {
- "bytes":     7966,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk211.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk212.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk213.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk214.tsv": {
- "bytes":     7981,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk215.tsv": {
- "bytes":     7849,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk216.tsv": {
- "bytes":     7984,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk217.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk218.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk219.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk220.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk221.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk222.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk223.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk224.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk225.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk226.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk227.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk228.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk229.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk230.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk231.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk232.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk233.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk234.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk235.tsv": {
- "bytes":     7842,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk236.tsv": {
- "bytes":     7851,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk237.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk238.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk239.tsv": {
- "bytes":     7644,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk240.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk241.tsv": {
- "bytes":     7484,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk242.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk243.tsv": {
- "bytes":     7966,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk244.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk245.tsv": {
- "bytes":     7965,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk246.tsv": {
- "bytes":     7962,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk247.tsv": {
- "bytes":     7943,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk248.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk249.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk250.tsv": {
- "bytes":     7989,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk251.tsv": {
- "bytes":     7944,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk252.tsv": {
- "bytes":     7955,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk253.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk254.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk255.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk256.tsv": {
- "bytes":     7910,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk257.tsv": {
- "bytes":     7916,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk258.tsv": {
- "bytes":     8000,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk259.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk260.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk261.tsv": {
- "bytes":     7902,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk262.tsv": {
- "bytes":     7633,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk263.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk264.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk265.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk266.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk267.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk268.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk269.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk270.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk271.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk272.tsv": {
- "bytes":     7847,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk273.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk274.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk275.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk276.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk277.tsv": {
- "bytes":     7840,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk278.tsv": {
- "bytes":     7821,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk279.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk280.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk281.tsv": {
- "bytes":     7484,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk282.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk283.tsv": {
- "bytes":     7966,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk284.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk285.tsv": {
- "bytes":     7965,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk286.tsv": {
- "bytes":     7962,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk287.tsv": {
- "bytes":     7943,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk288.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk289.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk290.tsv": {
- "bytes":     7989,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk291.tsv": {
- "bytes":     7944,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk292.tsv": {
- "bytes":     7955,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk293.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk294.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk295.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk296.tsv": {
- "bytes":     7910,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk297.tsv": {
- "bytes":     7916,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk298.tsv": {
- "bytes":     8000,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk299.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk300.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk301.tsv": {
- "bytes":     7902,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk302.tsv": {
- "bytes":     7633,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk303.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk304.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk305.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk306.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk307.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk308.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk309.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk310.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk311.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk312.tsv": {
- "bytes":     7847,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk313.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk314.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk315.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk316.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk317.tsv": {
- "bytes":     7840,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk318.tsv": {
- "bytes":     7821,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk319.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk320.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk321.tsv": {
- "bytes":     7753,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk322.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk323.tsv": {
- "bytes":     7981,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk324.tsv": {
- "bytes":     7967,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk325.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk326.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk327.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk328.tsv": {
- "bytes":     7925,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk329.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk330.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk331.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk332.tsv": {
- "bytes":     7970,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk333.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk334.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk335.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk336.tsv": {
- "bytes":     7971,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk337.tsv": {
- "bytes":     7988,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk338.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk339.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk340.tsv": {
- "bytes":     7921,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk341.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk342.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk343.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk344.tsv": {
- "bytes":     7979,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk345.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk346.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk347.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk348.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk349.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk350.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk351.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk352.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk353.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk354.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk355.tsv": {
- "bytes":     7846,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk356.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk357.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk358.tsv": {
- "bytes":     7847,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk359.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk360.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk361.tsv": {
- "bytes":     7753,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk362.tsv": {
- "bytes":     7991,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk363.tsv": {
- "bytes":     7981,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk364.tsv": {
- "bytes":     7967,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk365.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk366.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk367.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk368.tsv": {
- "bytes":     7925,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk369.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk370.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk371.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk372.tsv": {
- "bytes":     7970,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk373.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk374.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk375.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk376.tsv": {
- "bytes":     7971,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk377.tsv": {
- "bytes":     7988,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk378.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk379.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk380.tsv": {
- "bytes":     7921,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk381.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk382.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk383.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk384.tsv": {
- "bytes":     7979,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk385.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk386.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk387.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk388.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk389.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk390.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk391.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk392.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk393.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk394.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk395.tsv": {
- "bytes":     7846,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk396.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk397.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk398.tsv": {
- "bytes":     7847,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk399.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk400.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk401.tsv": {
- "bytes":     7836,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk402.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk403.tsv": {
- "bytes":     7966,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk404.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk405.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk406.tsv": {
- "bytes":     7977,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk407.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk408.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk409.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk410.tsv": {
- "bytes":     7983,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk411.tsv": {
- "bytes":     7972,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk412.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk413.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk414.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk415.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk416.tsv": {
- "bytes":     7953,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk417.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk418.tsv": {
- "bytes":     7977,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk419.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk420.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk421.tsv": {
- "bytes":     7976,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk422.tsv": {
- "bytes":     7899,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk423.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk424.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk425.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk426.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk427.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk428.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk429.tsv": {
- "bytes":     7852,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk430.tsv": {
- "bytes":     7851,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk431.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk432.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk433.tsv": {
- "bytes":     7857,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk434.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk435.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk436.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk437.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk438.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk439.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk440.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk441.tsv": {
- "bytes":     7985,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk442.tsv": {
- "bytes":     7984,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk443.tsv": {
- "bytes":     7974,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk444.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk445.tsv": {
- "bytes":     7929,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk446.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk447.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk448.tsv": {
- "bytes":     7956,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk449.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk450.tsv": {
- "bytes":     7924,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk451.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk452.tsv": {
- "bytes":     7996,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk453.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk454.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk455.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk456.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk457.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk458.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk459.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk460.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk461.tsv": {
- "bytes":     8000,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk462.tsv": {
- "bytes":     7835,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk463.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk464.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk465.tsv": {
- "bytes":     8009,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk466.tsv": {
- "bytes":     7857,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk467.tsv": {
- "bytes":     8001,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk468.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk469.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk470.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk471.tsv": {
- "bytes":     7488,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk472.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk473.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk474.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk475.tsv": {
- "bytes":     7855,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk476.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk477.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk478.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk479.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk480.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk481.tsv": {
- "bytes":     7985,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk482.tsv": {
- "bytes":     7984,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk483.tsv": {
- "bytes":     7974,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk484.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk485.tsv": {
- "bytes":     7929,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk486.tsv": {
- "bytes":     8008,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk487.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk488.tsv": {
- "bytes":     7956,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk489.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk490.tsv": {
- "bytes":     7924,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk491.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk492.tsv": {
- "bytes":     7996,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk493.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk494.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk495.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk496.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk497.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk498.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk499.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk500.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk501.tsv": {
- "bytes":     8000,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk502.tsv": {
- "bytes":     7835,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk503.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk504.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk505.tsv": {
- "bytes":     8009,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk506.tsv": {
- "bytes":     7857,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk507.tsv": {
- "bytes":     8001,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk508.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk509.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk510.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk511.tsv": {
- "bytes":     7488,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk512.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk513.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk514.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk515.tsv": {
- "bytes":     7855,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk516.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk517.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk518.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk519.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk520.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk521.tsv": {
- "bytes":     7777,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk522.tsv": {
- "bytes":     8043,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk523.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk524.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk525.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk526.tsv": {
- "bytes":     7995,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk527.tsv": {
- "bytes":     7955,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk528.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk529.tsv": {
- "bytes":     7935,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk530.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk531.tsv": {
- "bytes":     7934,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk532.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk533.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk534.tsv": {
- "bytes":     7869,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk535.tsv": {
- "bytes":     7976,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk536.tsv": {
- "bytes":     7885,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk537.tsv": {
- "bytes":     7801,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk538.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk539.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk540.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk541.tsv": {
- "bytes":     7995,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk542.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk543.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk544.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk545.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk546.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk547.tsv": {
- "bytes":     7960,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk548.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk549.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk550.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk551.tsv": {
- "bytes":     7851,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk552.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk553.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk554.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk555.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk556.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk557.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk558.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk559.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk560.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk561.tsv": {
- "bytes":     7777,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk562.tsv": {
- "bytes":     8043,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk563.tsv": {
- "bytes":     8012,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk564.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk565.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk566.tsv": {
- "bytes":     7995,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk567.tsv": {
- "bytes":     7955,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk568.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk569.tsv": {
- "bytes":     7935,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk570.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk571.tsv": {
- "bytes":     7934,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk572.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk573.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk574.tsv": {
- "bytes":     7869,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk575.tsv": {
- "bytes":     7976,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk576.tsv": {
- "bytes":     7885,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk577.tsv": {
- "bytes":     7801,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk578.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk579.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk580.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk581.tsv": {
- "bytes":     7995,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk582.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk583.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk584.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk585.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk586.tsv": {
- "bytes":     8006,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk587.tsv": {
- "bytes":     7960,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk588.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk589.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk590.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk591.tsv": {
- "bytes":     7851,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk592.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk593.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk594.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk595.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk596.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk597.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk598.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk599.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk600.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk601.tsv": {
- "bytes":     8081,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk602.tsv": {
- "bytes":     7993,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk603.tsv": {
- "bytes":     7987,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk604.tsv": {
- "bytes":     8042,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk605.tsv": {
- "bytes":     7989,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk606.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk607.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk608.tsv": {
- "bytes":     7966,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk609.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk610.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk611.tsv": {
- "bytes":     7916,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk612.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk613.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk614.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk615.tsv": {
- "bytes":     7978,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk616.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk617.tsv": {
- "bytes":     7895,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk618.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk619.tsv": {
- "bytes":     7995,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk620.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk621.tsv": {
- "bytes":     7998,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk622.tsv": {
- "bytes":     7885,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk623.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk624.tsv": {
- "bytes":     7889,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk625.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk626.tsv": {
- "bytes":     7882,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk627.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk628.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk629.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk630.tsv": {
- "bytes":     7866,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk631.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk632.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk633.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk634.tsv": {
- "bytes":     7839,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk635.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk636.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk637.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk638.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk639.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk640.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk641.tsv": {
- "bytes":     8044,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk642.tsv": {
- "bytes":     8064,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk643.tsv": {
- "bytes":     7949,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk644.tsv": {
- "bytes":     8031,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk645.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk646.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk647.tsv": {
- "bytes":     7948,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk648.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk649.tsv": {
- "bytes":     7963,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk650.tsv": {
- "bytes":     7930,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk651.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk652.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk653.tsv": {
- "bytes":     7931,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk654.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk655.tsv": {
- "bytes":     7983,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk656.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk657.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk658.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk659.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk660.tsv": {
- "bytes":     7985,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk661.tsv": {
- "bytes":     7902,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk662.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk663.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk664.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk665.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk666.tsv": {
- "bytes":     7871,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk667.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk668.tsv": {
- "bytes":     7682,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk669.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk670.tsv": {
- "bytes":     7865,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk671.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk672.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk673.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk674.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk675.tsv": {
- "bytes":     8021,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk676.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk677.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk678.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk679.tsv": {
- "bytes":     7634,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk680.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk681.tsv": {
- "bytes":     8044,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk682.tsv": {
- "bytes":     8064,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk683.tsv": {
- "bytes":     7949,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk684.tsv": {
- "bytes":     8031,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk685.tsv": {
- "bytes":     7994,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk686.tsv": {
- "bytes":     8026,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk687.tsv": {
- "bytes":     7948,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk688.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk689.tsv": {
- "bytes":     7963,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk690.tsv": {
- "bytes":     7930,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk691.tsv": {
- "bytes":     8017,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk692.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk693.tsv": {
- "bytes":     7931,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk694.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk695.tsv": {
- "bytes":     7983,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk696.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk697.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk698.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk699.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk700.tsv": {
- "bytes":     7985,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk701.tsv": {
- "bytes":     7902,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk702.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk703.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk704.tsv": {
- "bytes":     8024,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk705.tsv": {
- "bytes":     8019,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk706.tsv": {
- "bytes":     7871,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk707.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk708.tsv": {
- "bytes":     7682,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk709.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk710.tsv": {
- "bytes":     7865,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk711.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk712.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk713.tsv": {
- "bytes":     8014,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk714.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk715.tsv": {
- "bytes":     8021,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk716.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk717.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk718.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk719.tsv": {
- "bytes":     7634,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk720.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk721.tsv": {
- "bytes":     7392,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk722.tsv": {
- "bytes":     7968,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk723.tsv": {
- "bytes":     8035,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk724.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk725.tsv": {
- "bytes":     8001,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk726.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk727.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk728.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk729.tsv": {
- "bytes":     8001,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk730.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk731.tsv": {
- "bytes":     7957,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk732.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk733.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk734.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk735.tsv": {
- "bytes":     7879,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk736.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk737.tsv": {
- "bytes":     8009,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk738.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk739.tsv": {
- "bytes":     7785,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk740.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk741.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk742.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk743.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk744.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk745.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk746.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk747.tsv": {
- "bytes":     7588,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk748.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk749.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk750.tsv": {
- "bytes":     7835,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk751.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk752.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk753.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk754.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk755.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk756.tsv": {
- "bytes":     7828,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk757.tsv": {
- "bytes":     7850,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk758.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk759.tsv": {
- "bytes":     7846,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk760.tsv": {
- "bytes":       28,
-"rows": 1 
-},
-"geom17_line_fonctions_chunk761.tsv": {
- "bytes":     7392,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk762.tsv": {
- "bytes":     7968,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk763.tsv": {
- "bytes":     8035,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk764.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk765.tsv": {
- "bytes":     8001,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk766.tsv": {
- "bytes":     7997,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk767.tsv": {
- "bytes":     7992,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk768.tsv": {
- "bytes":     8015,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk769.tsv": {
- "bytes":     8001,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk770.tsv": {
- "bytes":     8005,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk771.tsv": {
- "bytes":     7957,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk772.tsv": {
- "bytes":     7999,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk773.tsv": {
- "bytes":     8013,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk774.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk775.tsv": {
- "bytes":     7879,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk776.tsv": {
- "bytes":     8007,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk777.tsv": {
- "bytes":     8009,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk778.tsv": {
- "bytes":     8023,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk779.tsv": {
- "bytes":     7785,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk780.tsv": {
- "bytes":     8020,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk781.tsv": {
- "bytes":     8011,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk782.tsv": {
- "bytes":     8018,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk783.tsv": {
- "bytes":     8025,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk784.tsv": {
- "bytes":     7990,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk785.tsv": {
- "bytes":     8010,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk786.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk787.tsv": {
- "bytes":     7588,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk788.tsv": {
- "bytes":     8004,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk789.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk790.tsv": {
- "bytes":     7835,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk791.tsv": {
- "bytes":     8002,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk792.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk793.tsv": {
- "bytes":     8022,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk794.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk795.tsv": {
- "bytes":     8016,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk796.tsv": {
- "bytes":     7828,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk797.tsv": {
- "bytes":     7850,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk798.tsv": {
- "bytes":     8028,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk799.tsv": {
- "bytes":     7846,
-"rows": 401 
-},
-"geom17_line_fonctions_chunk800.tsv": {
- "bytes":       28,
-"rows": 1 
-} 
-} 
+"total": 800 
 } 
 },
 "duration": {
@@ -5013,7 +1616,25 @@
 "voisins":     1000 
 },
 "selectors": {
- "ensemble": {
+ "erreur": {
+ "type": "multiple",
+"legend": true,
+"is.variable.value": false,
+"showSelected": true,
+"selected": [ "moyenne ± écart type", "chaque bloc de VC" ],
+"levels": [ "moyenne ± écart type", "chaque bloc de VC" ],
+"update": [
+ "geom1_point_test",
+"geom2_point_test",
+"geom4_segment_test",
+"geom5_segment_test",
+"geom6_text_test",
+"geom7_text_test",
+"geom9_point_test",
+"geom10_point_test" 
+] 
+},
+"ensemble": {
  "type": "multiple",
 "legend": true,
 "is.variable.value": false,
@@ -5035,9 +1656,9 @@
 "selected": "1",
 "levels": [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40" ],
 "update": [
- "geom1_segment_test",
-"geom2_segment_test",
-"geom3_point_test",
+ "geom1_point_test",
+"geom3_segment_test",
+"geom4_segment_test",
 "geom7_text_test",
 "geom8_text_test",
 "geom9_point_test",
@@ -5070,7 +1691,39 @@
 "plots": {
  "test": {
  "panel_margin_lines":     0.25,
-"legend": {},
+"legend": {
+ "erreur": {
+ "guide": "legend",
+"geoms": [ "point", "point", "point" ],
+"title": "erreur",
+"class": "erreur",
+"selector": "erreur",
+"is_discrete": true,
+"legend_type": [ "colour", "size" ],
+"text_size": "8.8pt",
+"title_size": "11pt",
+"entries": [
+ {
+ "pointsize":        5,
+"pointcolour": "#0000FF",
+"pointshape":       19,
+"pointstroke":      0.5,
+"label": "chaque bloc de VC",
+"pointfill": "#FF0000",
+"pointalpha":      0.5 
+},
+{
+ "pointsize":        3,
+"pointcolour": "#FF0000",
+"pointshape":       19,
+"pointstroke":      0.5,
+"label": "moyenne ± écart type",
+"pointfill": "#FF0000",
+"pointalpha":      0.5 
+} 
+] 
+} 
+},
 "strips": {
  "right": [
  "",
@@ -5227,8 +1880,8 @@
 5 
 ],
 "ylab": [
- "sans caractères",
-"sélection-sans",
+ "max (sans caractères)",
+"sélection-max",
 "sélection",
 "sélection-meilleur",
 "meilleur sur validation" 
@@ -5257,8 +1910,8 @@
 5 
 ],
 "ylab": [
- "sans caractères",
-"sélection-sans",
+ "max (sans caractères)",
+"sélection-max",
 "sélection",
 "sélection-meilleur",
 "meilleur sur validation" 
@@ -5287,8 +1940,8 @@
 5 
 ],
 "ylab": [
- "sans caractères",
-"sélection-sans",
+ "max (sans caractères)",
+"sélection-max",
 "sélection",
 "sélection-meilleur",
 "meilleur sur validation" 
@@ -5317,8 +1970,8 @@
 5 
 ],
 "ylab": [
- "sans caractères",
-"sélection-sans",
+ "max (sans caractères)",
+"sélection-max",
 "sélection",
 "sélection-meilleur",
 "meilleur sur validation" 
@@ -5327,14 +1980,12 @@
 "yline": true,
 "yticks": true 
 },
-"xtitle": "Racine de l’erreur carrée moyenne",
-"xtitle_size": "11pt",
+"xtitle": "Racine de l’erreur carrée moyenne (test)",
 "strip_text_xsize": "11pt",
 "xsize": "11pt",
 "xangle":        0,
 "xanchor": "middle",
-"ytitle": "Paramètre",
-"ytitle_size": "11pt",
+"ytitle": "Voisins",
 "strip_text_ysize": "11pt",
 "ysize": "11pt",
 "yangle":        0,
@@ -5345,13 +1996,13 @@
 "0.1" 
 ],
 "ylabs": [
- "sans caractères",
-"sélection-sans",
+ "max (sans caractères)",
+"sélection-max",
 "sélection",
 "sélection-meilleur",
 "meilleur sur validation" 
 ],
-"title": "Erreur sur l’ensemble test, choisir tendence et bloc",
+"title": "Erreur sur l’ensemble test, choisir tendence dans les données, et bloc de VC",
 "title_size": "13.2pt",
 "options": {
  "width":     1000,
@@ -5363,11 +2014,11 @@
 "last_in_row": true 
 },
 "geoms": [
- "geom1_segment_test",
-"geom2_segment_test",
-"geom3_point_test",
+ "geom1_point_test",
+"geom2_point_test",
+"geom3_segment_test",
 "geom4_segment_test",
-"geom5_point_test",
+"geom5_segment_test",
 "geom6_text_test",
 "geom7_text_test",
 "geom8_text_test",
@@ -5505,13 +2156,11 @@
 "yticks": true 
 },
 "xtitle": "nombre de voisins",
-"xtitle_size": "11pt",
 "strip_text_xsize": "11pt",
 "xsize": "11pt",
 "xangle":        0,
 "xanchor": "middle",
-"ytitle": "Racine de l’erreur carrée moyenne",
-"ytitle_size": "11pt",
+"ytitle": "Racine de l’erreur carrée moyenne (sous-ent. ou validation)",
 "strip_text_ysize": "11pt",
 "ysize": "11pt",
 "yangle":        0,
@@ -5564,7 +2213,7 @@
 "entries": [
  {
  "pointfill": "#000000",
-"pointshape":       21,
+"pointshape":       19,
 "pointcolour": "#000000",
 "pointsize":        4,
 "pointstroke":      0.5,
@@ -5572,7 +2221,7 @@
 },
 {
  "pointfill": "#FF0000",
-"pointshape":       21,
+"pointshape":       19,
 "pointcolour": "#000000",
 "pointsize":        4,
 "pointstroke":      0.5,
@@ -5580,7 +2229,7 @@
 },
 {
  "pointfill": "#00BFFF",
-"pointshape":       21,
+"pointshape":       19,
 "pointcolour": "#000000",
 "pointsize":        4,
 "pointstroke":      0.5,
@@ -5717,13 +2366,11 @@
 "yticks": true 
 },
 "xtitle": "entrée x",
-"xtitle_size": "11pt",
 "strip_text_xsize": "11pt",
 "xsize": "11pt",
 "xangle":        0,
 "xanchor": "middle",
 "ytitle": "sortie y",
-"ytitle_size": "11pt",
 "strip_text_ysize": "11pt",
 "ysize": "11pt",
 "yangle":        0,
@@ -5745,7 +2392,7 @@
 "title": "Tendence (points) et modèle (courbe) pour la sélection",
 "title_size": "13.2pt",
 "options": {
- "width":      600,
+ "width":      700,
 "height":      500 
 },
 "span": {

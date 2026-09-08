@@ -9,55 +9,6 @@ var animint = function (to_select, json_file) {
   var default_axis_px = 16;
   var grid_layout = false;
   var grid_layout_table;
-  
-  // Helper function to format numbers with commas (e.g., 4321 -> "4,321")
-  function formatWithCommas(num) {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  }
-  
-  // Helper function to format bytes as KiB or MiB with appropriate precision
-  // Uses binary units (1024) consistent with "man du" documentation
-  function formatBytes(bytes) {
-    if (bytes === 0) return "0";
-    var kib = bytes / 1024;
-    if (kib < 1024) {
-      // Less than 1 MiB, show in KiB
-      if (kib < 10) {
-        return kib.toFixed(2) + " KiB";
-      } else if (kib < 100) {
-        return kib.toFixed(1) + " KiB";
-      } else {
-        return Math.round(kib) + " KiB";
-      }
-    } else {
-      // 1 MiB or more, show in MiB
-      var mib = kib / 1024;
-      return mib.toFixed(2) + " MiB";
-    }
-  }
-  
-  // Helper function to apply consistent border and padding styles to table cells
-  function applyCellStyles(cell) {
-    return cell.style("border", "1px solid #ddd").style("padding", "4px");
-  }
-
-  // Helper function to update download status display after a chunk is downloaded
-  // Used by both common chunk and regular chunk download handlers
-  function updateDownloadStatus(g_info, tsv_name) {
-    if(g_info.chunk_info && g_info.chunk_info[tsv_name]){
-      var info = g_info.chunk_info[tsv_name];
-      g_info.total_bytes += info.bytes;
-      g_info.total_rows += info.rows;
-      g_info.downloaded_chunks += 1;
-      // Update display with "downloaded / total" format
-      var downloaded_count = g_info.downloaded_chunks;
-      var total_count = g_info.total_possible_chunks;
-      g_info.td_files.text(downloaded_count + " / " + total_count);
-      g_info.td_disk.text(formatBytes(g_info.total_bytes) + " / " + formatBytes(g_info.possible_bytes));
-      g_info.td_rows.text(formatWithCommas(g_info.total_rows) + " / " + formatWithCommas(g_info.possible_rows));
-    }
-  }
-  
   function wait_until_then(timeout, condFun, readyFun) {
     var args=arguments
     function checkFun() {
@@ -99,12 +50,6 @@ var animint = function (to_select, json_file) {
   }
   function legend_class_name(selector_name){
     return safe_name(selector_name) + "_variable";
-  }
-
-  // selector_name can be null for geoms without a selector (initial render via update_geom(g, null)).
-  function selector_has_duration(name) {
-    return name &&
-      Selectors[name].hasOwnProperty("duration");
   }
 
   function is_interactive_aes(v_name){
@@ -180,60 +125,23 @@ var animint = function (to_select, json_file) {
   var measureText = function(pText, pFontSize, pAngle, pStyle) {
     if (pText === undefined || pText === null || pText.length === 0) return {height: 0, width: 0};
     if (pAngle === null || isNaN(pAngle)) pAngle = 0;
-    
-    // Create temporary container to measure text
+
     var container = element.append('svg');
-    var textElement = container.append('text')
+    // do we need to set the class so that styling is applied?
+    //.attr('class', classname);
+
+    container.append('text')
+      .attr({x: -1000, y: -1000})
       .attr("transform", "rotate(" + pAngle + ")")
       .attr("style", pStyle)
-      .attr("font-size", pFontSize);
-    
-    // Check if text contains <br/> tags (multi-line)
-    var textStr = String(pText || '');
-    var lines = textStr.split('<br/>');
-    
-    // Always use setMultilineText for consistent rendering
-    setMultilineText(textElement, pText);
-    
-    // Get bounding box after rendering
+      .attr("font-size", pFontSize)
+      .text(pText);
+
     var bbox = container.node().getBBox();
-    
-    // Clean up temporary element
     container.remove();
-    
-    // Return measured dimensions
+
     return {height: bbox.height, width: bbox.width};
   };
-
-// Set multi-line text on SVG text elements.
-// Converts <br/> tags to <tspan> elements for proper SVG rendering.
-var setMultilineText = function(textElement, text) {
-  textElement.each(function(d) {
-    var textStr = typeof text === 'function' ? text(d) : text;
-    // Check for null/undefined, but allow falsy values like 0 or ""
-    if (textStr === null || textStr === undefined) return;
-    var lines = String(textStr).split('<br/>');
-    var el = d3.select(this);
-    el.text('');
-    // Line height: 1.2em is standard SVG spacing between text lines
-    var lineHeight = 1.2;
-    var y = el.attr('y') || 0;
-    var x = el.attr('x') || 0;
-    // Get dominant-baseline from parent, if any
-    var dominantBaseline = el.attr('dominant-baseline');
-    lines.forEach(function(line, i) {
-      var tspan = el.append('tspan')
-        .attr('x', x)
-        .attr('dy', i === 0 ? 0 : lineHeight + 'em')
-        .text(line);
-      // Inherit dominant-baseline from parent text element if set
-      if (dominantBaseline) {
-        tspan.attr('dominant-baseline', dominantBaseline);
-      }
-    });
-  });
-};
-
 
   var nest_by_group = d3.nest().key(function(d){ return d.group; });
   var dirs = json_file.split("/");
@@ -316,35 +224,11 @@ var setMultilineText = function(textElement, text) {
     }
     // Add a row to the loading table.
     g_info.tr = Widgets["loading"].append("tr");
-    applyCellStyles(g_info.tr.append("td").text(g_name));
-    g_info.td_files = applyCellStyles(g_info.tr.append("td").attr("class", "files").style("text-align", "right"));
-    g_info.td_disk = applyCellStyles(g_info.tr.append("td").attr("class", "disk").style("text-align", "right"));
-    g_info.td_rows = applyCellStyles(g_info.tr.append("td").attr("class", "rows").style("text-align", "right"));
-    // Initialize size tracking
-    g_info.total_bytes = 0;
-    g_info.total_rows = 0;
-    g_info.downloaded_chunks = 0;
-    // Calculate total possible bytes and rows from chunk_info
-    g_info.possible_bytes = 0;
-    g_info.possible_rows = 0;
-    g_info.total_possible_chunks = g_info.total;
-    if(g_info.chunk_info){
-      var tsv_count = 0;
-      for(var chunk_name in g_info.chunk_info){
-        if(chunk_name.endsWith('.tsv')){
-          g_info.possible_bytes += g_info.chunk_info[chunk_name].bytes;
-          g_info.possible_rows += g_info.chunk_info[chunk_name].rows;
-          tsv_count++;
-        }
-      }
-      // chunk_info includes the common chunk, so total_possible_chunks should include it
-      g_info.total_possible_chunks = tsv_count;
-    }
-
-    // Set initial display values
-    g_info.td_files.text("0 / " + g_info.total_possible_chunks);
-    g_info.td_disk.text("0 / " + formatBytes(g_info.possible_bytes));
-    g_info.td_rows.text("0 / " + formatWithCommas(g_info.possible_rows));
+    g_info.tr.append("td").text(g_name);
+    g_info.tr.append("td").attr("class", "chunk");
+    g_info.tr.append("td").attr("class", "downloaded").text(0);
+    g_info.tr.append("td").text(g_info.total);
+    g_info.tr.append("td").attr("class", "status").text("initialized");
 
     // load chunk tsv
     g_info.data = {};
@@ -359,8 +243,6 @@ var setMultilineText = function(textElement, text) {
       d3.tsv(common_path, function (error, response) {
         var converted = convert_R_types(response, g_info.types);
         g_info.data[common_tsv] = nest_by_group.map(converted);
-        // Track common chunk download for size information
-        updateDownloadStatus(g_info, common_tsv);
       });
     } else {
       g_info.common_tsv = null;
@@ -410,10 +292,9 @@ var setMultilineText = function(textElement, text) {
     var npanels = Math.max.apply(null, panel_names);
 
     // Note axis names are "shared" across panels (just like the title)
-    var xtitle_size = p_info["xtitle_size"] || (default_axis_px + "pt");
-    var ytitle_size = p_info["ytitle_size"] || (default_axis_px + "pt");
-    var xtitlepadding = 5 + measureText(p_info["xtitle"], xtitle_size).height;
-    var ytitlepadding = 5 + measureText(p_info["ytitle"], ytitle_size).height;
+    var xtitlepadding = 5 + measureText(p_info["xtitle"], default_axis_px).height;
+    var ytitlepadding = 5 + measureText(p_info["ytitle"], default_axis_px).height;
+
     // 'margins' are fixed across panels and do not
     // include title/axis/label padding (since these are not
     // fixed across panels). They do, however, account for
@@ -455,34 +336,23 @@ var setMultilineText = function(textElement, text) {
     var titlepadding = measureText(p_info.title, p_info.title_size).height;
     // why are we giving the title padding if it is undefined?
     if (p_info.title === undefined) titlepadding = 0;
-    
-    // Add extra margin below title for multiline text to prevent overlap
-    // with plot area. The measureText already accounts for multiline height,
-    // but we need additional bottom margin.
-    var titleBottomMargin = 5; // pixels of space below title
-    
     plotdim.title.x = p_info.options.width / 2;
-    // Position title at top margin, let it extend downward
-    plotdim.title.y = margin.top;
-    var titleText = svg.append("text")
+    plotdim.title.y = titlepadding;
+    svg.append("text")
+      .text(p_info.title)
       .attr("class", "plottitle")
       .attr("font-family", "sans-serif")
       .attr("font-size", p_info.title_size)
       .attr("transform", "translate(" + plotdim.title.x + "," + 
         plotdim.title.y + ")")
-      .style("text-anchor", "middle")
-      .attr("dominant-baseline", "hanging");
-    // Use multi-line text helper for plot titles (Issue #221)
-    setMultilineText(titleText, p_info.title);
+      .style("text-anchor", "middle");
 
     // grab max text size over axis labels and facet strip labels
-    // Base spacing between tick labels and axis titles.
-    // Y-axis uses 5px base (tick labels extend horizontally).
-    // X-axis uses 30px base to account for rotated tick labels.
     var axispaddingy = 5;
     if(p_info.hasOwnProperty("ylabs") && p_info.ylabs.length){
       axispaddingy += Math.max.apply(null, p_info.ylabs.map(function(entry){
-        // + 5 to give a little extra space to avoid bad axis labels in shiny.
+        // + 5 to give a little extra space to avoid bad axis labels
+        // in shiny.
         return measureText(entry, p_info.ysize).width + 5;
       }));
     }
@@ -490,7 +360,7 @@ var setMultilineText = function(textElement, text) {
     if(p_info.hasOwnProperty("xlabs") && p_info.xlabs.length){
       // TODO: throw warning if text height is large portion of plot height?
       axispaddingx += Math.max.apply(null, p_info.xlabs.map(function(entry){
-        return measureText(entry, p_info.xsize, p_info.xangle).height;
+             return measureText(entry, p_info.xsize, p_info.xangle).height;
       }));
       // TODO: carefully calculating this gets complicated with rotating xlabs
       //margin.right += 5;
@@ -551,7 +421,7 @@ var setMultilineText = function(textElement, text) {
     var graph_height = p_info.options.height - 
         nrows * (margin.top + margin.bottom) -
         strip_height -
-        titlepadding - titleBottomMargin - n_xaxes * axispaddingx - xtitlepadding;
+        titlepadding - n_xaxes * axispaddingx - xtitlepadding;
 
     // Impose the pixelated aspect ratio of the graph upon the width/height
     // proportions calculated by the compiler. This has to be done on the
@@ -689,7 +559,7 @@ var setMultilineText = function(textElement, text) {
       var strip_h = cum_height_per_row[current_row-1];
       plotdim.ystart = current_row * plotdim.margin.top +
         (current_row - 1) * plotdim.margin.bottom +
-        graph_height_cum + titlepadding + titleBottomMargin + strip_h;
+        graph_height_cum + titlepadding + strip_h;
       // room for xaxis title should be distributed evenly across
       // panels to preserve aspect ratio
       plotdim.yend = plotdim.ystart + plotdim.graph.height;
@@ -717,31 +587,21 @@ var setMultilineText = function(textElement, text) {
         }
         var x, y, rotate, stripElement, strip_text_xy;
         if (side == "right") {
+          x = plotdim.xend;
+          y = (plotdim.ystart + plotdim.yend) / 2;
+          rotate = 90;
           stripElement = rightStrip;
           strip_text_xy = "y";
         }else{ //top
+          x = (plotdim.xstart + plotdim.xend) / 2;
+          y = plotdim.ystart;
+          rotate = 0;
           stripElement = topStrip;
           strip_text_xy = "x";
         }
-        var strip_text_size = "strip_text_"+strip_text_xy+"size";
-        var label = strip[0];
-        var firstLine = label.split("<br/>")[0];
-        var stripSize = side == "right"
-          ? strip_widths[layout_i]
-          : strip_heights[layout_i];
-        var oneLineSize = measureText(firstLine, p_info[strip_text_size]).height;
-        var extra = Math.max(0, stripSize - oneLineSize);
-        if (side == "right") {
-          x = plotdim.xend + extra;
-          y = (plotdim.ystart + plotdim.yend) / 2;
-          rotate = 90;
-        }else{ //top
-          x = (plotdim.xstart + plotdim.xend) / 2;
-          y = plotdim.ystart - extra;
-          rotate = 0;
-        }
         var trans_text = "translate(" + x + "," + y + ")";
         var rot_text = "rotate(" + rotate + ")";
+        var strip_text_size = "strip_text_"+strip_text_xy+"size";
         stripElement
           .selectAll("." + side + "Strips")
           .data(strip)
@@ -749,8 +609,10 @@ var setMultilineText = function(textElement, text) {
           .append("text")
           .style("text-anchor", "middle")
           .style("font-size", p_info[strip_text_size])
+          .text(function(d) { return d; })
+        // NOTE: there could be multiple strips per panel
+        // TODO: is there a better way to manage spacing?
           .attr("transform", trans_text + rot_text)
-          .each(function(d) { setMultilineText(d3.select(this), d); })
         ;
       }
       draw_strip([p_info.strips.top[layout_i]], "top");
@@ -785,7 +647,10 @@ var setMultilineText = function(textElement, text) {
           var axis_path = xaxis_g.select("path.domain");
           axis_path.remove();
         }
-        apply_axis_text_styles(xaxis_g, "x", p_info);
+        xaxis_g.selectAll("text")
+          .style("text-anchor", p_info.xanchor)
+          .style("font-size", p_info.xsize)
+          .attr("transform", "rotate(" + p_info.xangle + " 0 9)");
       }
       if(draw_y){
         var yaxis = d3.svg.axis()
@@ -804,7 +669,8 @@ var setMultilineText = function(textElement, text) {
           var axis_path = yaxis_g.select("path.domain");
           axis_path.remove();
         }
-        apply_axis_text_styles(yaxis_g, "y", p_info);
+  yaxis_g.selectAll(".tick text")
+    .style("font-size", p_info.ysize);
       }
 
       if(!axis.xline) {
@@ -899,30 +765,30 @@ var setMultilineText = function(textElement, text) {
     } //end of for(layout_i
     // After drawing all backgrounds, we can draw the axis labels.
     if(p_info["ytitle"]){
-      var ytitleText = svg.append("text")
+      svg.append("text")
+        .text(p_info["ytitle"])
         .attr("class", "ytitle")
         .style("text-anchor", "middle")
-        .style("font-size", ytitle_size)
+        .style("font-size", default_axis_px + "px")
         .attr("transform", "translate(" +
               ytitle_x +
               "," +
               (ytitle_top + ytitle_bottom)/2 +
-              ")rotate(270)");
-      // Use multi-line text helper for y-axis title (Issue #221)
-      setMultilineText(ytitleText, p_info["ytitle"]);
+              ")rotate(270)")
+      ;
     }
     if(p_info["xtitle"]){
-      var xtitleText = svg.append("text")
+      svg.append("text")
+        .text(p_info["xtitle"])
         .attr("class", "xtitle")
         .style("text-anchor", "middle")
-        .style("font-size", xtitle_size)
+        .style("font-size", default_axis_px + "px")
         .attr("transform", "translate(" +
               (xtitle_left + xtitle_right)/2 +
               "," +
               xtitle_y +
-              ")");
-      // Use multi-line text helper for x-axis title (Issue #221)
-      setMultilineText(xtitleText, p_info["xtitle"]);
+              ")")
+      ;
     }
     Plots[p_name].scales = scales;
   }; //end of add_plot()
@@ -1131,9 +997,8 @@ var setMultilineText = function(textElement, text) {
         });
         var chunk = nest.map(response);
         g_info.data[tsv_name] = chunk;
+        g_info.tr.select("td.downloaded").text(d3.keys(g_info.data).length);
         g_info.download_status[tsv_name] = "saved";
-        // Update size information after download
-        updateDownloadStatus(g_info, tsv_name);
         funAfter(chunk);
       });
     });
@@ -1142,6 +1007,7 @@ var setMultilineText = function(textElement, text) {
   // update_geom is responsible for obtaining a chunk of downloaded
   // data, and then calling draw_geom to actually draw it.
   var draw_geom = function(g_info, chunk, selector_name, PANEL){
+    g_info.tr.select("td.status").text("displayed");
     var svg = SVGs[g_info.classed];
     // derive the plot name from the geometry name
     var g_names = g_info.classed.split("_");
@@ -1508,40 +1374,12 @@ var setMultilineText = function(textElement, text) {
         fill = "none";
         fill_off = "none";
       }
-      data_to_bind = kv;      
-      // polygon with subgroup aesthetic: use d3.geo.path with GeoJSON + evenodd fill rule
-      if(g_info.geom === "polygon" && g_info.data_has_subgroup){
-        var geoPath = d3.geo.path().projection(null);
-        eActions = function(e){
-          e.attr("d", function(d){
-            var points = keyed_data[d.value];
-            var nested = d3.nest()
-              .key(function(pt){ return pt.subgroup; })
-              .entries(points);
-            var coords = nested.map(function(group){
-              var ring = group.values.map(function(pt){
-                return [scales.x(pt.x), scales.y(pt.y)];
-              });
-              if(ring.length > 0){
-                ring = ring.concat([ring[0]]);
-              }
-              return ring;
-            });
-            var geojson = {
-              type: "Polygon",
-              coordinates: coords
-            };
-            return geoPath(geojson);
-          })
-          .style("fill-rule", "evenodd");
-        };
-      } else {
-        eActions = function(e){
-          e.attr("d", function(d){
-            return lineThing(keyed_data[d.value]);
-          })
-        };
-      }
+      data_to_bind = kv;
+      eActions = function (e) {
+        e.attr("d", function (d) {
+          return lineThing(keyed_data[d.value]);
+        })
+      };
       eAppend = "path";
     }else{
       get_one_row = function(d){
@@ -1659,13 +1497,11 @@ var setMultilineText = function(textElement, text) {
             .attr("y", toXY("y", "y"))
             .attr("font-size", get_size)
             .style("text-anchor", get_text_anchor)
-            .text(function(d){return d.label;})
-            .attr("transform", get_rotate);
-          // multi-line text breaks geom updates
-          //setMultilineText(e, function (d) {
-          //  return d.label;
-          //})
-          //;
+            .attr("transform", get_rotate)
+            .text(function (d) {
+              return d.label;
+            })
+          ;
         };
         eAppend = "text";
       }
@@ -1735,7 +1571,7 @@ var setMultilineText = function(textElement, text) {
           eActions = function(groups) {
             // Handle transitions seperately due to unique structure of geom_label_aligned
             var transitionDuration = 0;
-            if(selector_has_duration(selector_name)){
+            if (Selectors.hasOwnProperty(selector_name)) {
               transitionDuration = +Selectors[selector_name].duration || 0;
             }
             groups.each(function(d) {
@@ -2031,7 +1867,7 @@ var setMultilineText = function(textElement, text) {
           positionTooltip(tooltip, tooltip.html());
         });
     }
-    if(selector_has_duration(selector_name)){
+    if(Selectors.hasOwnProperty(selector_name)){
       var milliseconds = Selectors[selector_name].duration;
       elements = elements.transition().duration(milliseconds);
     }
@@ -2094,20 +1930,6 @@ var setMultilineText = function(textElement, text) {
       }
     }
   
-  // Helper function to apply axis text styling
-  // Used by both axis initialization and update_axes to ensure consistency
-  function apply_axis_text_styles(axis_g, axes, p_info){
-    if(axes == "x"){
-      axis_g.selectAll("text")
-        .style("text-anchor", p_info.xanchor)
-        .style("font-size", p_info.xsize)
-        .attr("transform", "rotate(" + p_info.xangle + " 0 9)");
-    }else{
-      axis_g.selectAll(".tick text")
-        .style("font-size", p_info.ysize);
-    }
-  }
-
   // update scales for the plots that have update_axes option in
   // theme_animint
   function update_scales(p_name, axes, v_name, value){
@@ -2150,7 +1972,7 @@ var setMultilineText = function(textElement, text) {
             // Once scales are updated, update the axis ticks if needed
             if(draw_axes){
               // Tick values are same as major grid lines
-              update_axes(p_name, xyaxis, panel_i, grid_vals[1], v_name);
+              update_axes(p_name, xyaxis, panel_i, grid_vals[1]);
             }
             // Update major and minor grid lines
             update_grids(p_name, xyaxis, panel_i, grid_vals, scales);
@@ -2162,7 +1984,7 @@ var setMultilineText = function(textElement, text) {
 
   // Update the axis ticks etc. once plot is zoomed in/out
   // currently called from update_scales.
-  function update_axes(p_name, axes, panel_i, tick_vals, v_name){
+  function update_axes(p_name, axes, panel_i, tick_vals){
     var orientation;
     if(axes == "x"){
       orientation = "bottom";
@@ -2177,23 +1999,16 @@ var setMultilineText = function(textElement, text) {
           .orient(orientation)
           .tickValues(tick_vals);
     // update existing axis
-    var xyaxis_sel = element.select("#"+viz_id+"_"+p_name).select("."+axes+"axis_"+panel_i);
-    var milliseconds = 0;
-    if(selector_has_duration(v_name)){
-      milliseconds = Selectors[v_name].duration;
-    }
-    var xyaxis_g = xyaxis_sel
+    var xyaxis_g = element.select("#plot_"+p_name).select("."+axes+"axis_"+panel_i)
           .transition()
-          .duration(milliseconds)
+          .duration(1000)
           .call(xyaxis);
-    // Fix for issue #273: preserve axis text styling after update
-    apply_axis_text_styles(xyaxis_sel, axes, Plots[p_name]);
   }
 
   // Update major/minor grids once axes ticks have been updated
   function update_grids(p_name, axes, panel_i, grid_vals, scales){
     // Select panel to update
-    var bgr = element.select("#"+viz_id+"_"+p_name).select(".bgr"+panel_i);
+    var bgr = element.select("#plot_"+p_name).select(".bgr"+panel_i);
     // Update major and minor grid lines
     ["minor", "major"].forEach(function(grid_class, j){
       var lines = bgr.select(".grid_"+grid_class).select("."+axes);
@@ -2256,6 +2071,9 @@ var setMultilineText = function(textElement, text) {
   }
 
   var update_selector = function (v_name, value) {
+    if(!Selectors.hasOwnProperty(v_name)){
+      return;
+    }
     value = value + "";
     var s_info = Selectors[v_name];
     if(s_info.type == "single"){
@@ -2392,15 +2210,10 @@ var setMultilineText = function(textElement, text) {
       var first_th = first_tr.append("th")
         .attr("align", "left")
         .attr("colspan", 2)
+        .text(l_info.title)
         .attr("class", legend_class)
-        .style("font-size", l_info.title_size);
-      // Use multi-line text helper for legend title (Issue #221)
-      if (l_info.title && l_info.title.indexOf('<br/>') > -1) {
-        // Multi-line title: replace <br/> with actual line breaks in HTML
-        first_th.html(l_info.title.replace(/<br\/>/g, '<br/>'));
-      } else {
-        first_th.text(l_info.title);
-      }
+        .style("font-size", l_info.title_size)
+      ;
       var legend_svgs = legend_rows.append("td")
         .append("svg")
               .attr("id", function(d){return d["id"]+"_svg";})
@@ -2555,16 +2368,14 @@ var setMultilineText = function(textElement, text) {
         }
       });
     var loading = widget_td.append("table")
-      .attr("id", viz_id + "_download_status")
-      .style("display", "none")
-      .style("border-collapse", "collapse")
-      .style("border", "1px solid #ddd");
+      .style("display", "none");
     Widgets["loading"] = loading;
     var tr = loading.append("tr");
-    applyCellStyles(tr.append("th").text("geom"));
-    applyCellStyles(tr.append("th").attr("class", "files").style("text-align", "right")).text("files");
-    applyCellStyles(tr.append("th").attr("class", "disk").style("text-align", "right")).text("disk");
-    applyCellStyles(tr.append("th").attr("class", "rows").style("text-align", "right")).text("rows");
+    tr.append("th").text("geom");
+    tr.append("th").attr("class", "chunk").text("selected chunk");
+    tr.append("th").attr("class", "downloaded").text("downloaded");
+    tr.append("th").attr("class", "total").text("total");
+    tr.append("th").attr("class", "status").text("status");
     
     // Add geoms and construct nest operators.
     for (var g_name in response.geoms) {
@@ -2926,5 +2737,52 @@ var setMultilineText = function(textElement, text) {
       status_array=status_array.slice(1)
       return status_array.every(function(elem){ return elem === "displayed"});           
     }
+    if(window.location.hash) {
+      var fragment=window.location.hash;
+      fragment=fragment.slice(1);
+      fragment=decodeURI(fragment)
+      var frag_array=fragment.split(/(.*?})/);
+      frag_array=frag_array.filter(function(x){ return x!=""})
+      frag_array.forEach(function(selector_string){ 
+        var selector_hash=selector_string.split("=");
+        var selector_nam=selector_hash[0];
+        var selector_values=selector_hash[1];
+        var re = /\{(.*?)\}/;
+        selector_values = re.exec(selector_values)[1];
+        var array_values = selector_values.split(',');
+        if(Selectors.hasOwnProperty(selector_nam)){
+          var s_info = Selectors[selector_nam]
+          if(s_info.type=="single"){//TODO fix
+            array_values.forEach(function(element) {
+              wait_until_then(100, check_func, update_selector,selector_nam,element)
+              if(response.time)Animation.pause(true)
+            });   
+          }else{
+            var old_selections = Selectors[selector_nam].selected;
+            // the levels that need to have selections turned on
+            array_values
+              .filter(function(n) {
+                return old_selections.indexOf(n) == -1;
+              })
+              .forEach(function(element) {
+                wait_until_then(100, check_func, update_selector,selector_nam,element)
+                if(response.time){
+                  Animation.pause(true)
+                }
+              });
+            old_selections
+              .filter(function(n) {
+                return array_values.indexOf(n) == -1;
+              })
+              .forEach(function(element) {
+                wait_until_then(100, check_func, update_selector,selector_nam,element)
+                if(response.time){
+                  Animation.pause(true)
+                }
+              });     
+          }//if(single) else multiple selection
+        }//if(Selectors.hasOwnProperty(selector_nam))
+      })//frag_array.forEach
+    }//if(window.location.hash)
   });
 };
